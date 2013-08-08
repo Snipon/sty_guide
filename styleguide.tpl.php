@@ -1,10 +1,9 @@
 <section>
-  <h1>Heading 1</h1>
-  <h2>Heading 2</h2>
-  <h3>Heading 3</h3>
-  <p class="lead-paragraph">Lead paragraph</p>
-  <p>Body</p>
-  <a href="#">Link</a>
+  <h2 id="toc_1">Style guide</h1>
+  <p>Copy <strong>styleguide.tpl.php</strong>, located in this module, to your theme and go nuts.</p>
+  <figure>
+    <img src="<?php print $path; ?>img/nyan.gif" />
+  </figure>
 </section>
 
 <!-- Navbar -->

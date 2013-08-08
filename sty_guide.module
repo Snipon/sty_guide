@@ -12,21 +12,6 @@ function sty_guide_menu() {
   return $items;
 }
 
-function img_styles(){
-  $styles = image_styles();
-  $dimensions = array();
-  foreach ($styles as $key => $style) {
-    foreach ($style['effects'] as $effect) {
-      if ($effect['name'] = 'image_scale') {
-        $dimensions[$key]['name'] = $key;
-        $dimensions[$key]['width'] = $effect['data']['width'];
-        $dimensions[$key]['height'] = (!empty($effect['data']['height']) ? $effect['data']['height'] : 100);
-      }
-    }
-  }
-  return $dimensions;
-}
-
 function sty_guide_page() {
   $path = drupal_get_path('module', 'sty_guide') . '/';
   drupal_add_css($path . 'css/sty_guide.style.css');
@@ -37,7 +22,7 @@ function sty_guide_page() {
 
 
 
-  $vars['styles'] = img_styles();
+  $vars['path'] = $path;
 
   return theme('styleguide', $vars);
 }
