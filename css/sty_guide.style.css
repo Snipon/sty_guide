@@ -1,0 +1,27 @@
+#navbar {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  background: rgba(255,255,255,0.9);
+}
+
+#navbar .nav {
+  padding: 10px;
+}
+
+#navbar .nav > li {
+  float: none;
+}
+
+#navbar .nav > li > a {
+  color: black;
+}
+
+#navbar .nav > li > a > i {
+  font-size: 2em;
+  -webkit-transition: color 0.1s linear;
+}
+
+#navbar .nav > li.active > a > i {
+  color: #56B3E6;
+}

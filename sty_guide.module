@@ -1,0 +1,58 @@
+<?php
+function sty_guide_menu() {
+  // TODO: Add a admin menu path if hook_custom_theme decides to work.
+  $items['styleguide'] = array(
+    'page callback' => 'sty_guide_page',
+    'page arguments' => array(),
+    'access arguments' => array('access content'),
+    'title' => 'Style guide',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+function img_styles(){
+  $styles = image_styles();
+  $dimensions = array();
+  foreach ($styles as $key => $style) {
+    foreach ($style['effects'] as $effect) {
+      if ($effect['name'] = 'image_scale') {
+        $dimensions[$key]['name'] = $key;
+        $dimensions[$key]['width'] = $effect['data']['width'];
+        $dimensions[$key]['height'] = (!empty($effect['data']['height']) ? $effect['data']['height'] : 100);
+      }
+    }
+  }
+  return $dimensions;
+}
+
+function sty_guide_page() {
+  $path = drupal_get_path('module', 'sty_guide') . '/';
+  drupal_add_css($path . 'css/sty_guide.style.css');
+  drupal_add_js('//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js', 'external');
+  drupal_add_js('http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js', 'external');
+  drupal_add_js($path . 'js/sty_guide.toc.js');
+  drupal_add_js($path . 'js/sty_guide.script.js');
+
+
+
+  $vars['styles'] = img_styles();
+
+  return theme('styleguide', $vars);
+}
+
+function sty_guide_theme() {
+  $themes = array (
+    'styleguide' => array(
+        'template' => 'styleguide', // your template file called custompage.tpl.php
+        'arguments' => array(),
+    ),
+  );
+  return $themes;
+}
+
+function sty_guide_preprocess_html(&$variables) {
+  $variables['attributes_array']['data-spy'] = 'scroll';
+  $variables['attributes_array']['data-target'] = '#navbar';
+}
